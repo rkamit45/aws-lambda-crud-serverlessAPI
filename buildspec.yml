@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+
+  pre_build:
+    commands:
+      - echo "Starting pre-build phase..."
+      - echo "Checking Java and Maven versions..."
+      - java -version
+      - mvn -version
+
+  build:
+    commands:
+      - echo "Building Serverless Spring Boot Application package..."
+      - mvn clean package -DskipTests
+
+  post_build:
+    commands:
+      - echo "Build completed successfully."
+      - echo "Locating generated zip package..."
+      - ZIP_FILE=$(ls target/*.zip | head -n 1)
+      - echo "Deploying artifact $ZIP_FILE to AWS Lambda..."
+      - aws lambda update-function-code --function-name course-service --zip-file fileb://$ZIP_FILE
+      - echo "AWS Lambda function code updated successfully!"
+
+artifacts:
+  files:
+    - target/*.zip
+  discard-paths: yes
