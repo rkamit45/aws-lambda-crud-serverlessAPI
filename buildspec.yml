@@ -24,6 +24,6 @@ phases:
 artifacts:
   files:
     #- target/course-service.jar
-    - src/course-service.jar
+    - course-service.jar
     - template.yaml
   discard-paths: yes
