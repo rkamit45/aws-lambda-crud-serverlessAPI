@@ -11,7 +11,7 @@ Resources:
     Properties:
       Handler: org.example.StreamLambdaHandler::handleRequest
       Runtime: java17
-      CodeUri: src/course-service.jar # Points directly to the built artifact
+      CodeUri: ./course-service.jar # Points directly to the built artifact
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 30
