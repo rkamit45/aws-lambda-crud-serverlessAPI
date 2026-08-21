@@ -7,25 +7,21 @@ phases:
 
   pre_build:
     commands:
-      - echo "Starting pre-build phase..."
       - java -version
       - mvn -version
 
   build:
     commands:
-      - echo "Building Serverless Spring Boot shaded JAR..."
-      - mvn clean package -Pshaded-jar -DskipTests
+      - echo "Building application shaded JAR..."
+      - mvn clean package -DskipTests
 
   post_build:
     commands:
-      - echo "Build completed successfully."
-      - echo "Locating generated JAR package..."
-      - JAR_FILE=$(ls target/*.jar | grep -v "original-" | head -n 1)
-      - echo "Deploying artifact $JAR_FILE to AWS Lambda..."
-      - aws lambda update-function-code --function-name course-service --zip-file fileb://$JAR_FILE
-      - echo "AWS Lambda function code updated successfully!"
+      - echo "Deploying target/course-service.jar to AWS Lambda..."
+      - aws lambda update-function-code --function-name course-service --zip-file fileb://target/course-service.jar
+      - echo "Deployment complete!"
 
 artifacts:
   files:
-    - target/*.jar
+    - target/course-service.jar
   discard-paths: yes
