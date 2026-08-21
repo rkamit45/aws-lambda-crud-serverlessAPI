@@ -17,12 +17,12 @@ phases:
 
   post_build:
     commands:
-      - echo "Deploying target/course-service.jar to AWS Lambda..."
-      - aws lambda update-function-code --function-name course-service --zip-file fileb://target/course-service.jar
+      - echo "Deploying target/aws-lambda-example-1.0-SNAPSHOT-lambda-package.zip to AWS Lambda..."
+      - aws lambda update-function-code --function-name course-service --zip-file fileb://target/aws-lambda-example-1.0-SNAPSHOT-lambda-package.zip
       - echo "Deployment complete!"
 
 artifacts:
   files:
-    - target/course-service.jar
+    - target/aws-lambda-example-1.0-SNAPSHOT-lambda-package.zip
     - template.yaml
   discard-paths: yes
