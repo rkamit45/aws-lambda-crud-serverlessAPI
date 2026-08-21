@@ -24,7 +24,6 @@ phases:
 artifacts:
   files:
     #- target/course-service.jar
-    - course-service.jar
+    - src/course-service.jar
     - template.yaml
-  base-directory: 'src' # Strips the src/ path prefix from the packaged artifact
-  #discard-paths: yes
+  discard-paths: yes
