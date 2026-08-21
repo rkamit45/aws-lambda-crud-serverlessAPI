@@ -10,8 +10,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: org.example.StreamLambdaHandler::handleRequest
-      Runtime: java25
-      CodeUri: .
+      Runtime: java17
+      CodeUri: src/course-service.jar # Points directly to the built artifact
       MemorySize: 512
       Policies: AWSLambdaBasicExecutionRole
       Timeout: 30
