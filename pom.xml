@@ -110,6 +110,7 @@
                         </executions>
                     </plugin>
                 </plugins>
+                <finalName>course-service</finalName>
             </build>
         </profile>
         <profile>
